@@ -18,6 +18,8 @@ def validate_joke(joke: str) -> None:
     """Raise ValueError unless the joke is a non-empty single line of at most 200 characters."""
     if not joke or not joke.strip():
         raise ValueError("joke must not be empty")
+    if not any(ch.isalpha() for ch in joke):
+        raise ValueError("joke must contain at least one letter")
     if "\n" in joke or "\r" in joke:
         raise ValueError("joke must be a single line")
     if len(joke) > MAX_CHARS:
